@@ -8,6 +8,7 @@ import { MyOrder } from '../MyOrder';
 import { MyOrders } from '../MyOrders';
 import { SingIn } from '../SingIn';
 import { NotFound } from '../NotFound';
+import { ShoppingCartProvider } from '../../Contexts/ShoppingCartContext';
 
 function AppRoutes() {
     const routes = useRoutes([
@@ -25,10 +26,12 @@ function AppRoutes() {
 function AppUI() {
     return (
         <React.Fragment>    
-            <BrowserRouter>
-                <AppRoutes />
-                <Navbar />
-            </BrowserRouter>    
+            <ShoppingCartProvider>
+                <BrowserRouter>
+                    <AppRoutes />
+                    <Navbar />
+                </BrowserRouter>    
+            </ShoppingCartProvider>
         </React.Fragment>
     );
 }

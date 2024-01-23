@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { ShoppingCartContext } from "../../Contexts/ShoppingCartContext";
 
 function Navbar() {
+    const {
+        shoppingCartCounter
+    } = useContext(ShoppingCartContext);
+
     const menuOfLeft = [
         { to: '/', name: 'Shopi', className: 'font-semibold text-lg' },
         { to: '/', name: 'All'},
@@ -17,7 +22,7 @@ function Navbar() {
         { to: '/my-orders', name: 'My orders'},
         { to: '/my-account', name: 'My occount'},
         { to: '/sign-in', name: 'Sign in' },
-        { to: '/shoppcar', name: '🛒' },
+        { to: '/shoppcar', name: '🛒', shoppingCartCounter},
     ]
 
     const activeStyle = 'underline underline-offset-4';
@@ -40,6 +45,7 @@ function Navbar() {
                         <li key={index} className={itemNavbar.className}>
                             <NavLink to={itemNavbar.to} className={({ isActive }) => isActive ? activeStyle : undefined}>
                                 {itemNavbar.name}
+                                {itemNavbar.shoppingCartCounter}
                             </NavLink>
                         </li>
                     ))}
