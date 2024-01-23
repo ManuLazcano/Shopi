@@ -1,4 +1,6 @@
+import { PlusIcon } from '@heroicons/react/24/solid'
 import React from 'react';
+
 import { ShoppingCartContext } from '../../Contexts/ShoppingCartContext';
 
 function Card({data}) {
@@ -11,9 +13,9 @@ function Card({data}) {
             <figure className="relative mb-2 w-full h-4/5">
                 <span className="absolute bottom-0 left-0 bg-white/60 rounded-lg text-black text-xs m-2 px-3 py-0.5">{data.category}</span>
                 <img className="w-full h-full object-contain rounded-lg" src={data?.image} alt={data.title} />
-                <button className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1" type="button"
+                <button className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1 shadow-md" type="button"
                     onClick={addProductToShoppingCart}>
-                    +
+                    <PlusIcon />
                 </button>
             </figure>
             <p className="flex justify-between mx-2">

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Card } from "../../components/Card";
 import { Layout } from "../../components/Layout";
 import { useEffect } from "react";
+import { ProductDetail } from "../../components/ProductDetail";
 
 function Home() {
   const BASE_URL = 'https://fakestoreapi.com/products';
@@ -24,6 +25,7 @@ function Home() {
             ))
           }
         </section>
+        <ProductDetail />
       </Layout>
     </>
   )

@@ -1,4 +1,7 @@
 import React, { useContext } from "react";
+
+import { ShoppingBagIcon } from '@heroicons/react/24/solid'
+
 import { NavLink } from "react-router-dom";
 import { ShoppingCartContext } from "../../Contexts/ShoppingCartContext";
 
@@ -22,7 +25,7 @@ function Navbar() {
         { to: '/my-orders', name: 'My orders'},
         { to: '/my-account', name: 'My occount'},
         { to: '/sign-in', name: 'Sign in' },
-        { to: '/shoppcar', name: '🛒', shoppingCartCounter},
+        { to: '/shoppcar', name: <ShoppingBagIcon className="w-4 h-4 inline mr-1"/>, shoppingCartCounter},
     ]
 
     const activeStyle = 'underline underline-offset-4';
@@ -42,7 +45,7 @@ function Navbar() {
 
                 <ul className="flex items-center gap-3">
                     {menuOfRigth.map((itemNavbar, index) => (
-                        <li key={index} className={itemNavbar.className}>
+                        <li key={index} className={itemNavbar.className} >
                             <NavLink to={itemNavbar.to} className={({ isActive }) => isActive ? activeStyle : undefined}>
                                 {itemNavbar.name}
                                 {itemNavbar.shoppingCartCounter}
