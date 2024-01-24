@@ -1,8 +1,11 @@
+import React from "react";
 import { useState } from "react";
+
 import { Card } from "../../components/Card";
 import { Layout } from "../../components/Layout";
 import { useEffect } from "react";
 import { ProductDetail } from "../../components/ProductDetail";
+import { ProductDetailProvider } from "../../Contexts/ProductDetailContext";
 
 function Home() {
   const BASE_URL = 'https://fakestoreapi.com/products';
@@ -16,18 +19,20 @@ function Home() {
   },[]);
 
   return (
-    <>
+    <React.Fragment>
       <Layout>
-        <section className="grid gap-4 grid-cols-4 w-full max-w-screen-lg">
-          {
-            products.map((product) => (
-              <Card key={product.id} data={product}/>            
-            ))
-          }
-        </section>
-        <ProductDetail />
+        <ProductDetailProvider>
+          <section className="grid gap-4 grid-cols-4 w-full max-w-screen-lg">
+            {
+              products.map((product) => (
+                <Card key={product.id} product={product}/>            
+              ))
+            }
+          </section>
+          <ProductDetail />
+        </ProductDetailProvider>
       </Layout>
-    </>
+    </React.Fragment>
   )
 }
 
