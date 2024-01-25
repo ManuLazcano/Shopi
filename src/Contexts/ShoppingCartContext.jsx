@@ -5,9 +5,13 @@ const ShoppingCartContext = createContext();
 
 function ShoppingCartProvider({children}) {
     const [shoppingCartCounter, setShoppingCartCounter] = useState(0);
-    const addProductToShoppingCart = () => {        
+    const [productsInShoppingCart, setProductsInShoppingCart] = useState([]);
+
+    const addProductToShoppingCart = (product) => {        
         setShoppingCartCounter(prevCounter => prevCounter + 1);
+        setProductsInShoppingCart([...productsInShoppingCart, product]);        
     };
+    
     const removeProductFromShoppingCart = () => {
         setShoppingCartCounter(prevCounter => prevCounter - 1);
     };    
