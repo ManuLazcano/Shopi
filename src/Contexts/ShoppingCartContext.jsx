@@ -21,7 +21,8 @@ function ShoppingCartProvider({children}) {
             <ShoppingCartContext.Provider value={{
                 shoppingCartCounter,
                 addProductToShoppingCart,
-                removeProductFromShoppingCart
+                removeProductFromShoppingCart,
+                productsInShoppingCart
             }}>
                 {children}
             </ShoppingCartContext.Provider>
