@@ -3,10 +3,12 @@ import React from 'react';
 
 import { ShoppingCartContext } from '../../Contexts/ShoppingCartContext';
 import { ProductDetailContext } from '../../Contexts/ProductDetailContext';
+import { CheckoutSideMenuContext } from "../../Contexts/CheckoutSideMenuContext";
 
 function Card({product}) {
     const { addProductToShoppingCart } = React.useContext(ShoppingCartContext);
     const { openProductDetail, setProductDetail } = React.useContext(ProductDetailContext);
+    const { openCheckoutSideMenu } = React.useContext(CheckoutSideMenuContext);
 
     return (
         <React.Fragment>
@@ -24,6 +26,7 @@ function Card({product}) {
                         onClick={(event) => {
                             event.stopPropagation();
                             addProductToShoppingCart(product);
+                            openCheckoutSideMenu();
                         }}>
                         <PlusIcon />
                     </button>

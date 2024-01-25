@@ -9,6 +9,8 @@ import { MyOrders } from '../MyOrders';
 import { SingIn } from '../SingIn';
 import { NotFound } from '../NotFound';
 import { ShoppingCartProvider } from '../../Contexts/ShoppingCartContext';
+import { CheckoutSideMenu } from "../../components/CheckoutSideMenu";
+import { CheckoutSideMenuProvider } from "../../Contexts/CheckoutSideMenuContext";
 
 function AppRoutes() {
     const routes = useRoutes([
@@ -27,10 +29,13 @@ function AppUI() {
     return (
         <React.Fragment>    
             <ShoppingCartProvider>
-                <BrowserRouter>
-                    <AppRoutes />
-                    <Navbar />
-                </BrowserRouter>    
+                <CheckoutSideMenuProvider>
+                    <BrowserRouter>
+                        <AppRoutes />
+                        <Navbar />
+                        <CheckoutSideMenu />                    
+                    </BrowserRouter>    
+                </CheckoutSideMenuProvider>
             </ShoppingCartProvider>
         </React.Fragment>
     );

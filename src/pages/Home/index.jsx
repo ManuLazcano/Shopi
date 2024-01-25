@@ -21,16 +21,16 @@ function Home() {
   return (
     <React.Fragment>
       <Layout>
-        <ProductDetailProvider>
-          <section className="grid gap-4 grid-cols-4 w-full max-w-screen-lg">
-            {
-              products.map((product) => (
-                <Card key={product.id} product={product}/>            
-              ))
-            }
-          </section>
-          <ProductDetail />
-        </ProductDetailProvider>
+          <ProductDetailProvider>
+            <section className="grid gap-4 grid-cols-4 w-full max-w-screen-lg">
+              {
+                products.map((product) => (
+                  <Card key={product.id} product={product}/>            
+                ))
+              }
+            </section>
+            <ProductDetail />            
+          </ProductDetailProvider>        
       </Layout>
     </React.Fragment>
   )

@@ -5,11 +5,11 @@ const ShoppingCartContext = createContext();
 
 function ShoppingCartProvider({children}) {
     const [shoppingCartCounter, setShoppingCartCounter] = useState(0);
-    const [productsInShoppingCart, setProductsInShoppingCart] = useState([]);
+    const [productsInShoppingCart, setProductsInShoppingCart] = useState([]);    
 
     const addProductToShoppingCart = (product) => {        
         setShoppingCartCounter(prevCounter => prevCounter + 1);
-        setProductsInShoppingCart([...productsInShoppingCart, product]);        
+        setProductsInShoppingCart([...productsInShoppingCart, product]);
     };
     
     const removeProductFromShoppingCart = () => {
