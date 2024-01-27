@@ -4,6 +4,7 @@ import React from 'react';
 import { CheckoutSideMenuContext } from '../../Contexts/CheckoutSideMenuContext';
 import { ShoppingCartContext } from '../../Contexts/ShoppingCartContext';
 import { OrderProduct } from '../OrderProduct';
+import { totalPrice } from '../../utilis/totalPrice';
 
 function CheckoutSideMenu() {
     const {
@@ -11,7 +12,12 @@ function CheckoutSideMenu() {
         closeCheckoutSideMenu,    
     } = React.useContext(CheckoutSideMenuContext);
 
-    const { productsInShoppingCart } = React.useContext(ShoppingCartContext);
+    const { productsInShoppingCart, updateProductsInShoppingCart } = React.useContext(ShoppingCartContext);
+
+    const removeProduct = (id) => {
+        const filteredProducts = productsInShoppingCart.filter(product => product.id != id);
+        updateProductsInShoppingCart(filteredProducts);
+    };
 
     return (
         <React.Fragment>
@@ -26,11 +32,21 @@ function CheckoutSideMenu() {
                     <section className="px-6">
                         {productsInShoppingCart.map(product => (
                             <OrderProduct 
-                                product={product}
                                 key={product.id}
+                                id={product.id}
+                                title={product.title}
+                                price={product.price}
+                                image={product.image}                                
+                                removeProduct={removeProduct}
                             />
                         ))}                                  
                     </section>
+                    <div className="px-6">
+                        <p className="flex justify-between items-center">
+                            <span className="font-medium">Total:</span>
+                            <span className="font-medium text-2xl">${totalPrice(productsInShoppingCart)}</span>
+                        </p>
+                    </div>
                 </section>
             </aside>
         </React.Fragment>

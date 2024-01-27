@@ -12,17 +12,21 @@ function ShoppingCartProvider({children}) {
         setProductsInShoppingCart([...productsInShoppingCart, product]);
     };
     
+    const updateProductsInShoppingCart = (updatedProducts) => {
+        removeProductFromShoppingCart();
+        setProductsInShoppingCart(updatedProducts);
+    };  
     const removeProductFromShoppingCart = () => {
         setShoppingCartCounter(prevCounter => prevCounter - 1);
-    };    
-
+    };  
+    
     return ( 
         <React.Fragment>
             <ShoppingCartContext.Provider value={{
                 shoppingCartCounter,
-                addProductToShoppingCart,
-                removeProductFromShoppingCart,
-                productsInShoppingCart
+                addProductToShoppingCart,            
+                productsInShoppingCart,
+                updateProductsInShoppingCart
             }}>
                 {children}
             </ShoppingCartContext.Provider>
