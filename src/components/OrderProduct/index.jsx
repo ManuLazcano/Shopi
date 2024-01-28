@@ -3,6 +3,11 @@ import React from "react";
 import { XCircleIcon } from '@heroicons/react/24/solid';
 
 function OrderProduct({id, title, image, price, removeProduct}) {
+    let renderXCircleIcon;
+    if(removeProduct) {
+        renderXCircleIcon = <XCircleIcon onClick={() => removeProduct(id)} className="h-6 w-6 text--black cursor-pointer" />
+    }
+
     return (
         <React.Fragment>
             <article className="flex justify-between items-center mb-3">
@@ -17,7 +22,7 @@ function OrderProduct({id, title, image, price, removeProduct}) {
                 <div className="flex items-center gap-2 p-2">
                     <span className="text-lg font-medium">${price}</span>
                     <span>
-                        <XCircleIcon onClick={() => removeProduct(id)} className="h-6 w-6 text--black cursor-pointer" />    
+                        {renderXCircleIcon}
                     </span>
                 </div>
             </article>

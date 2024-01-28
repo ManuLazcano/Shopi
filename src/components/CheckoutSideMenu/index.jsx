@@ -1,10 +1,12 @@
+import React from 'react';
+
 import { XCircleIcon } from '@heroicons/react/24/solid';
 
-import React from 'react';
 import { CheckoutSideMenuContext } from '../../Contexts/CheckoutSideMenuContext';
 import { ShoppingCartContext } from '../../Contexts/ShoppingCartContext';
 import { OrderProduct } from '../OrderProduct';
 import { totalPrice } from '../../utilis/totalPrice';
+import { Link } from 'react-router-dom';
 
 function CheckoutSideMenu() {
     const {
@@ -61,11 +63,13 @@ function CheckoutSideMenu() {
                             <span className="font-medium">Total:</span>
                             <span className="font-medium text-2xl">${totalPrice(productsInShoppingCart)}</span>
                         </p>
-                        <button 
-                            className="w-full bg-black py-3 text-white rounded-lg mt-2"
-                            onClick={() => handleCheckout()} type="button">
-                            Checkout
-                        </button>                    
+                        <Link to='/my-orders/last'>
+                            <button 
+                                className="w-full bg-black py-3 text-white rounded-lg mt-2"
+                                onClick={() => handleCheckout()} type="button">
+                                Checkout
+                            </button>                    
+                        </Link>
                     </section>                       
                 </section>
             </aside>
