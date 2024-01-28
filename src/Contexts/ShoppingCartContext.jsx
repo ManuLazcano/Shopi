@@ -26,7 +26,8 @@ function ShoppingCartProvider({children}) {
                 shoppingCartCounter,
                 addProductToShoppingCart,            
                 productsInShoppingCart,
-                updateProductsInShoppingCart
+                updateProductsInShoppingCart,
+                setShoppingCartCounter
             }}>
                 {children}
             </ShoppingCartContext.Provider>

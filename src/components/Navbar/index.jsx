@@ -48,7 +48,8 @@ function Navbar() {
                         <li key={index} className={itemNavbar.className} >
                             <NavLink to={itemNavbar.to} className={({ isActive }) => isActive ? activeStyle : undefined}>
                                 {itemNavbar.name}
-                                {itemNavbar.shoppingCartCounter}
+                                {itemNavbar.shoppingCartCounter} 
+                                {/* TODO: Remover el estado del contador, por el tamañó del array de productos (productsInShoppingCart.length) */}
                             </NavLink>
                         </li>
                     ))}

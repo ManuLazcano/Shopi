@@ -8,12 +8,16 @@ function CheckoutSideMenuProvider({children}) {
     const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true);
     const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false);
 
+    const [groupOrders, setGroupOrders] = useState([]);
+
     return (
         <React.Fragment>
             <CheckoutSideMenuContext.Provider value={{
                 isCheckoutSideMenuOpen,
                 openCheckoutSideMenu,
-                closeCheckoutSideMenu,                
+                closeCheckoutSideMenu,
+                setGroupOrders,
+                groupOrders,
             }}>
                 {children}
             </CheckoutSideMenuContext.Provider>
