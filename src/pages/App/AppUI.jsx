@@ -11,6 +11,7 @@ import { NotFound } from '../NotFound';
 import { ShoppingCartProvider } from '../../Contexts/ShoppingCartContext';
 import { CheckoutSideMenu } from "../../components/CheckoutSideMenu";
 import { CheckoutSideMenuProvider } from "../../Contexts/CheckoutSideMenuContext";
+import { ApiContextProvider } from "../../Contexts/ApiContext";
 
 function AppRoutes() {
     const routes = useRoutes([
@@ -30,6 +31,7 @@ function AppRoutes() {
 function AppUI() {
     return (
         <React.Fragment>    
+            <ApiContextProvider>
             <ShoppingCartProvider>
                 <CheckoutSideMenuProvider>
                     <BrowserRouter>
@@ -39,6 +41,7 @@ function AppUI() {
                     </BrowserRouter>    
                 </CheckoutSideMenuProvider>
             </ShoppingCartProvider>
+            </ApiContextProvider>
         </React.Fragment>
     );
 }
