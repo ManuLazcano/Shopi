@@ -15,14 +15,24 @@ function ApiContextProvider ({children}) {
     },[]);
 
     const [searchByTitle, setSearchByTitle] = useState('');
-    console.log(searchByTitle);
+    const [filteredProducts, setFilteredProducts] = useState([]);
+
+    const filteredProductsByTitle = () => {
+        return products?.filter(product => product.title.toLowerCase().includes(searchByTitle.toLocaleLowerCase()));
+    };
+    useEffect(() => {
+        if(searchByTitle) {
+            setFilteredProducts(filteredProductsByTitle());
+        }
+    },[products, searchByTitle]);    
 
     return(
         <React.Fragment>
             <ApiContext.Provider value={{
                 products,
                 searchByTitle,
-                setSearchByTitle
+                setSearchByTitle,
+                filteredProducts
             }}>
                 {children}
             </ApiContext.Provider>

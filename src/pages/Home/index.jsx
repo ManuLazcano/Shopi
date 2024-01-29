@@ -7,7 +7,28 @@ import { ProductDetailProvider } from "../../Contexts/ProductDetailContext";
 import { ApiContext } from "../../Contexts/ApiContext";
 
 function Home() {
-  const { products, setSearchByTitle } = React.useContext(ApiContext);
+  const { products, searchByTitle, setSearchByTitle, filteredProducts } = React.useContext(ApiContext);
+  const renderView = () => {
+    if(searchByTitle?.length > 0) {
+      if(filteredProducts?.length > 0) {
+        return (
+          filteredProducts?.map((product) => (
+            <Card key={product.id} product={product}/>            
+          ))
+        );
+      } else {
+        return (
+          <div>We don't have anything</div>
+        )
+      }
+    } else {
+      return(
+        products.map((product) => (
+          <Card key={product.id} product={product}/>            
+        ))
+      );
+    }
+  };
 
   return (
     <React.Fragment>
@@ -22,11 +43,7 @@ function Home() {
           onChange={(event) => setSearchByTitle(event.target.value)} />
         <ProductDetailProvider>            
           <section className="grid gap-4 grid-cols-4 w-full max-w-screen-lg">
-            {
-              products.map((product) => (
-                <Card key={product.id} product={product}/>            
-              ))
-            }
+            {renderView()}
           </section>
           <ProductDetail />                        
         </ProductDetailProvider>        
