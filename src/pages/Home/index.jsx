@@ -7,25 +7,18 @@ import { ProductDetailProvider } from "../../Contexts/ProductDetailContext";
 import { ApiContext } from "../../Contexts/ApiContext";
 
 function Home() {
-  const { products, searchByTitle, setSearchByTitle, filteredProducts } = React.useContext(ApiContext);
+  const { setSearchByTitle, filteredProducts } = React.useContext(ApiContext);
   const renderView = () => {
-    if(searchByTitle?.length > 0) {
-      if(filteredProducts?.length > 0) {
-        return (
-          filteredProducts?.map((product) => (
-            <Card key={product.id} product={product}/>            
-          ))
-        );
-      } else {
-        return (
-          <div>We don't have anything</div>
-        )
-      }
-    } else {
-      return(
-        products.map((product) => (
-          <Card key={product.id} product={product}/>            
-        ))
+
+  if(filteredProducts?.length > 0) {
+    return (
+      filteredProducts?.map((product) => (
+        <Card key={product.id} product={product}/>            
+      ))
+    );
+  } else {
+    return (
+        <div>We don't have anything</div>
       );
     }
   };
