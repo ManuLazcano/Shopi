@@ -18,14 +18,6 @@ function ApiContextProvider ({children}) {
     const [searchByCategory, setSearchByCategory] = useState('');
     const [filteredProducts, setFilteredProducts] = useState([]);
 
-    // const filteredProductsByTitle = () => {
-    //     return products?.filter(product => product.title.toLocaleLowerCase().includes(searchByTitle.toLocaleLowerCase()));
-    // };
-
-    // const filteredProductsByCategory = () => {        
-    //     return products?.filter(product => product.category.toLocaleLowerCase().includes(searchByCategory.toLocaleLowerCase()));
-    // };
-
     const filteredProductsBy = (propertyName, searchType) => {
         return products?.filter(product => product[propertyName].toLocaleLowerCase().includes(searchType.toLocaleLowerCase()));
     };

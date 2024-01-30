@@ -3,31 +3,23 @@ import { createContext, useState } from "react";
 
 const ShoppingCartContext = createContext();
 
-function ShoppingCartProvider({children}) {
-    const [shoppingCartCounter, setShoppingCartCounter] = useState(0);
+function ShoppingCartProvider({children}) {    
     const [productsInShoppingCart, setProductsInShoppingCart] = useState([]);    
 
-    const addProductToShoppingCart = (product) => {        
-        setShoppingCartCounter(prevCounter => prevCounter + 1);
+    const addProductToShoppingCart = (product) => {                
         setProductsInShoppingCart([...productsInShoppingCart, product]);
     };
     
-    const updateProductsInShoppingCart = (updatedProducts) => {
-        removeProductFromShoppingCart();
+    const updateProductsInShoppingCart = (updatedProducts) => {        
         setProductsInShoppingCart(updatedProducts);
-    };  
-    const removeProductFromShoppingCart = () => {
-        setShoppingCartCounter(prevCounter => prevCounter - 1);
     };  
     
     return ( 
         <React.Fragment>
-            <ShoppingCartContext.Provider value={{
-                shoppingCartCounter,
-                addProductToShoppingCart,            
+            <ShoppingCartContext.Provider value={{                
                 productsInShoppingCart,
-                updateProductsInShoppingCart,
-                setShoppingCartCounter
+                addProductToShoppingCart,            
+                updateProductsInShoppingCart,                
             }}>
                 {children}
             </ShoppingCartContext.Provider>

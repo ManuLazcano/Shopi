@@ -16,7 +16,7 @@ function CheckoutSideMenu() {
         groupOrders,
     } = React.useContext(CheckoutSideMenuContext);
 
-    const { productsInShoppingCart, updateProductsInShoppingCart, setShoppingCartCounter } = React.useContext(ShoppingCartContext);
+    const { productsInShoppingCart, updateProductsInShoppingCart } = React.useContext(ShoppingCartContext);
 
     const removeProduct = (id) => {
         const filteredProducts = productsInShoppingCart.filter(product => product.id != id);
@@ -32,8 +32,7 @@ function CheckoutSideMenu() {
         };
 
         setGroupOrders([...groupOrders, orderToAdd]);
-        updateProductsInShoppingCart([]);
-        setShoppingCartCounter(0);
+        updateProductsInShoppingCart([]);        
     };
 
     return (

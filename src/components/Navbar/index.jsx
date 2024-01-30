@@ -8,7 +8,7 @@ import { ApiContext } from "../../Contexts/ApiContext";
 
 function Navbar() {
     const {
-        shoppingCartCounter
+        productsInShoppingCart
     } = useContext(ShoppingCartContext);
     
     const {
@@ -17,15 +17,13 @@ function Navbar() {
     } = useContext(ApiContext);
 
     const menuOfLeft = [                
-        { to: '/clothes', name: 'clothes'},
         { to: '/electronics', name: 'electronics'},
-        { to: '/furnitures', name: 'furnitures'},
-        { to: '/toys', name: 'toys'},
-        { to: '/others', name: 'others'},
+        { to: '/jewelery', name: 'jewelery'},
+        { to: '/mens-clothing', name: 'men\'s clothing'},
+        { to: '/womens-clothing', name: 'women\'s clothing'},
     ];
 
-    const menuOfRigth = [
-        { to: '/', name: 'example@gmail.com', className: 'text-black/60'},
+    const menuOfRigth = [        
         { to: '/my-orders', name: 'My orders'},
         { to: '/my-account', name: 'My occount'},
         { to: '/sign-in', name: 'Sign in' },        
@@ -71,17 +69,16 @@ function Navbar() {
                 </ul>
 
                 <ul className="flex items-center gap-3">
+                    <li className="text-black/60">example@gmail.com</li>
                     {menuOfRigth.map((itemNavbar, index) => (
                         <li key={index} className={itemNavbar.className} >
                             <NavLink to={itemNavbar.to} className={({ isActive }) => isActive ? activeStyle : undefined}>
-                                {itemNavbar.name}
-                                {/* {itemNavbar.shoppingCartCounter}  */}
-                                {/* TODO: Remover el estado del contador, por el tamañó del array de productos (productsInShoppingCart.length) */}
+                                {itemNavbar.name}                                                                
                             </NavLink>
                         </li>
                     ))}
                     <li>
-                        <ShoppingBagIcon className="w-4 h-4 inline mr-1"/> {shoppingCartCounter}
+                        <ShoppingBagIcon className="w-4 h-4 inline mr-1"/> {productsInShoppingCart.length}
                     </li>
                 </ul>
             </nav>
