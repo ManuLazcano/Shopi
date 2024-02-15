@@ -1,5 +1,4 @@
 import React from "react";
-
 import { XCircleIcon } from '@heroicons/react/24/solid';
 
 function OrderProduct({id, title, image, price, removeProduct}) {

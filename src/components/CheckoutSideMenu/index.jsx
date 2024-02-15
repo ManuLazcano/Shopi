@@ -1,12 +1,11 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 import { XCircleIcon } from '@heroicons/react/24/solid';
 
 import { CheckoutSideMenuContext } from '../../Contexts/CheckoutSideMenuContext';
 import { ShoppingCartContext } from '../../Contexts/ShoppingCartContext';
 import { OrderProduct } from '../OrderProduct';
 import { totalPrice } from '../../utilis/totalPrice';
-import { Link } from 'react-router-dom';
 
 function CheckoutSideMenu() {
     const {

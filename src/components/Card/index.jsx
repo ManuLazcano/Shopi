@@ -1,6 +1,5 @@
-import { PlusIcon, CheckCircleIcon } from '@heroicons/react/24/solid'
-
 import React from 'react';
+import { PlusIcon, CheckCircleIcon } from '@heroicons/react/24/solid'
 
 import { ShoppingCartContext } from '../../Contexts/ShoppingCartContext';
 import { ProductDetailContext } from '../../Contexts/ProductDetailContext';
@@ -11,7 +10,7 @@ function Card({product}) {
     const { openProductDetail, setProductDetail } = React.useContext(ProductDetailContext);
     const { openCheckoutSideMenu } = React.useContext(CheckoutSideMenuContext);
 
-    const toggleCardIcon =  () => {
+    const toggleCardIcon = () => {
         const isInShoppingCart = productsInShoppingCart.filter(productsInShoppingCart => productsInShoppingCart.id === product.id).length > 0;
 
         if(isInShoppingCart) {

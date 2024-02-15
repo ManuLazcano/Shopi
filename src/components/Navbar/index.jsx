@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-
 import { ShoppingBagIcon } from '@heroicons/react/24/solid'
 
 import { NavLink } from "react-router-dom";
@@ -55,9 +54,7 @@ function Navbar() {
                         </li>    
                     </NavLink>                    
                     {menuOfLeft.map((itemNavbar, index) => (
-                        <li 
-                            key={index} 
-                            className={itemNavbar.className}>
+                        <li key={index}>
                             <NavLink 
                                 to={itemNavbar.to} 
                                 onClick={() => setSearchByCategory(itemNavbar.name)}
@@ -71,7 +68,7 @@ function Navbar() {
                 <ul className="flex items-center gap-3">
                     <li className="text-black/60">example@gmail.com</li>
                     {menuOfRigth.map((itemNavbar, index) => (
-                        <li key={index} className={itemNavbar.className} >
+                        <li key={index}>
                             <NavLink to={itemNavbar.to} className={({ isActive }) => isActive ? activeStyle : undefined}>
                                 {itemNavbar.name}                                                                
                             </NavLink>

@@ -1,5 +1,4 @@
 import React from "react";
-
 import { ChevronRightIcon, ShoppingBagIcon, CalendarIcon } from '@heroicons/react/24/solid';
 
 function OrdersProduct({ totalPrice, totalProducts}) {

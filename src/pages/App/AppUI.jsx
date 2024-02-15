@@ -13,6 +13,7 @@ import { CheckoutSideMenu } from "../../components/CheckoutSideMenu";
 import { CheckoutSideMenuProvider } from "../../Contexts/CheckoutSideMenuContext";
 import { ApiContextProvider } from "../../Contexts/ApiContext";
 
+
 function AppRoutes() {
     const routes = useRoutes([
         { path: '/', element: <Home />},        
@@ -33,20 +34,18 @@ function AppRoutes() {
 }
 
 function AppUI() {
-    return (
-        <React.Fragment>    
-            <ApiContextProvider>
-                <ShoppingCartProvider>
-                    <CheckoutSideMenuProvider>
-                        <BrowserRouter>
-                            <AppRoutes />
-                            <Navbar />
-                            <CheckoutSideMenu />                    
-                        </BrowserRouter>    
-                    </CheckoutSideMenuProvider>
-                </ShoppingCartProvider>
-            </ApiContextProvider>
-        </React.Fragment>
+    return (    
+        <ApiContextProvider>
+            <ShoppingCartProvider>
+                <CheckoutSideMenuProvider>
+                    <BrowserRouter>
+                        <Navbar />
+                        <AppRoutes />
+                        <CheckoutSideMenu />                    
+                    </BrowserRouter>    
+                </CheckoutSideMenuProvider>
+            </ShoppingCartProvider>
+        </ApiContextProvider>        
     );
 }
 

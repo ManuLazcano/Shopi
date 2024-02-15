@@ -1,5 +1,4 @@
-import React from "react";
-import { createContext, useState } from "react";
+import React, { createContext, useState } from "react";
 
 const ShoppingCartContext = createContext();
 
@@ -14,16 +13,14 @@ function ShoppingCartProvider({children}) {
         setProductsInShoppingCart(updatedProducts);
     };  
     
-    return ( 
-        <React.Fragment>
-            <ShoppingCartContext.Provider value={{                
-                productsInShoppingCart,
-                addProductToShoppingCart,            
-                updateProductsInShoppingCart,                
-            }}>
-                {children}
-            </ShoppingCartContext.Provider>
-        </React.Fragment>
+    return (     
+        <ShoppingCartContext.Provider value={{                
+            productsInShoppingCart,
+            addProductToShoppingCart,            
+            updateProductsInShoppingCart,                
+        }}>
+            {children}
+        </ShoppingCartContext.Provider>        
     );
 }
 

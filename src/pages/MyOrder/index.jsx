@@ -10,7 +10,9 @@ function MyOrder() {
   const { groupOrders } = React.useContext(CheckoutSideMenuContext);
   const currentPath = window.location.pathname;
   let indexOfId = currentPath.substring(currentPath.lastIndexOf('/') + 1);  
-  if(indexOfId === 'last') indexOfId = groupOrders?.length - 1;
+  if(indexOfId === 'last') {
+    indexOfId = groupOrders?.length - 1; 
+  }
   
   return (
     <React.Fragment>

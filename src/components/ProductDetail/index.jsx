@@ -1,6 +1,6 @@
+import React from 'react';
 import { XCircleIcon } from '@heroicons/react/24/solid';
 
-import React from 'react';
 import { ProductDetailContext } from '../../Contexts/ProductDetailContext';
 
 function ProductDetail() {
@@ -17,18 +17,16 @@ function ProductDetail() {
                     <div className="flex justify-between items-center p-6">
                         <h2 className="font-medium text-xl">Detail</h2>
                         <span>
-                            <XCircleIcon onClick={() => closeProductDetail()} className="h-6 w-6 text--black cursor-pointer" />    
+                            <XCircleIcon onClick={() => closeProductDetail()} className="h-6 w-6 text--black cursor-pointer" />
                         </span>
-                    </div>                    
+                    </div>
                     <figure className='px-5'>
-                        <img                             
-                            src={productDetail.image} 
-                            alt={productDetail.title} />
+                        <img src={productDetail.image} alt={productDetail.title} />
                     </figure>
                     <p className='flex flex-col p-5'>
-                        <span className='font-medium text-2xl mb-2'>{productDetail.price}</span> 
-                        <span className='font-medium text-md mb-1'>{productDetail.title}</span> 
-                        <span className='font-light text-sm'>{productDetail.description}</span> 
+                        <span className='font-medium text-2xl mb-2'>{productDetail.price}</span>
+                        <span className='font-medium text-md mb-1'>{productDetail.title}</span>
+                        <span className='font-light text-sm'>{productDetail.description}</span>
                     </p>
                 </article>
             </aside>
