@@ -12,6 +12,7 @@ import { ShoppingCartProvider } from '../../Contexts/ShoppingCartContext';
 import { CheckoutSideMenu } from "../../components/CheckoutSideMenu";
 import { CheckoutSideMenuProvider } from "../../Contexts/CheckoutSideMenuContext";
 import { ApiContextProvider } from "../../Contexts/ApiContext";
+import { AuthProvider } from "../../Contexts/AuthContext";
 
 
 function AppRoutes() {
@@ -34,18 +35,20 @@ function AppRoutes() {
 }
 
 function AppUI() {
-    return (    
-        <ApiContextProvider>
-            <ShoppingCartProvider>
-                <CheckoutSideMenuProvider>
-                    <BrowserRouter>
-                        <Navbar />
-                        <AppRoutes />
-                        <CheckoutSideMenu />                    
-                    </BrowserRouter>    
-                </CheckoutSideMenuProvider>
-            </ShoppingCartProvider>
-        </ApiContextProvider>        
+    return (   
+        <AuthProvider>
+            <ApiContextProvider>
+                <ShoppingCartProvider>
+                    <CheckoutSideMenuProvider>
+                        <BrowserRouter>
+                            <Navbar />
+                            <AppRoutes />
+                            <CheckoutSideMenu />                    
+                        </BrowserRouter>    
+                    </CheckoutSideMenuProvider>
+                </ShoppingCartProvider>
+            </ApiContextProvider>        
+        </AuthProvider> 
     );
 }
 
