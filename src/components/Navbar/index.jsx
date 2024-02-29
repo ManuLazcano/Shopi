@@ -16,7 +16,7 @@ function Navbar() {
         setSearchByTitle
     } = useContext(ApiContext);
 
-    const { setSignOut } = useContext(AuthContext);
+    const { signOut, setSignOut } = useContext(AuthContext);
 
     const menuOfLeft = [                
         { to: '/electronics', name: 'electronics'},
@@ -33,10 +33,49 @@ function Navbar() {
 
     const activeStyle = 'underline underline-offset-4';
 
+    const signOutInLocalStorage = localStorage.getItem('sign-out');
+    const parsedSignOut = JSON.parse(signOutInLocalStorage);
+    const isUserSignOut = signOut || parsedSignOut;
+
     const handleSignOut = () => {
         const stringifyfiedSignOut = JSON.stringify(true);
         localStorage.setItem('sign-out', stringifyfiedSignOut);
         setSignOut(true);
+    }
+
+    function renderView() {
+        if(isUserSignOut) {
+            return (
+                <li>
+                    <NavLink to='/sign-in' className={({ isActive }) => isActive ? activeStyle : undefined}
+                        onClick={() => handleSignOut()}>
+                        Sign out
+                    </NavLink>
+                </li>
+            );
+        } else {
+            return (
+                <>
+                    <li className="text-black/60">example@gmail.com</li>
+                        {menuOfRigth.map((itemNavbar, index) => (
+                            <li key={index}>
+                                <NavLink to={itemNavbar.to} className={({ isActive }) => isActive ? activeStyle : undefined}>
+                                    {itemNavbar.name}                                                                
+                                </NavLink>
+                            </li>
+                        ))}
+                    <li>
+                        <NavLink to='/sign-in' className={({ isActive }) => isActive ? activeStyle : undefined}
+                            onClick={() => handleSignOut()}>
+                            Sign out
+                        </NavLink>
+                    </li>
+                    <li>
+                        <ShoppingBagIcon className="w-4 h-4 inline mr-1"/> {productsInShoppingCart.length}
+                    </li>
+                </>
+            );
+        }
     }
 
     return (
@@ -74,24 +113,8 @@ function Navbar() {
                     ))}
                 </ul>
 
-                <ul className="flex items-center gap-3">
-                    <li className="text-black/60">example@gmail.com</li>
-                    {menuOfRigth.map((itemNavbar, index) => (
-                        <li key={index}>
-                            <NavLink to={itemNavbar.to} className={({ isActive }) => isActive ? activeStyle : undefined}>
-                                {itemNavbar.name}                                                                
-                            </NavLink>
-                        </li>
-                    ))}
-                    <li>
-                        <NavLink to='/sign-out' className={({ isActive }) => isActive ? activeStyle : undefined}
-                            onClick={() => handleSignOut()}>
-                            Sign out
-                        </NavLink>
-                    </li>
-                    <li>
-                        <ShoppingBagIcon className="w-4 h-4 inline mr-1"/> {productsInShoppingCart.length}
-                    </li>
+                <ul className="flex items-center gap-3">                
+                    {renderView()}
                 </ul>
             </nav>
         </React.Fragment>
