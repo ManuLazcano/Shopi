@@ -4,6 +4,7 @@ import { ShoppingBagIcon } from '@heroicons/react/24/solid'
 import { NavLink } from "react-router-dom";
 import { ShoppingCartContext } from "../../Contexts/ShoppingCartContext";
 import { ApiContext } from "../../Contexts/ApiContext";
+import { AuthContext } from "../../Contexts/AuthContext";
 
 function Navbar() {
     const {
@@ -15,6 +16,8 @@ function Navbar() {
         setSearchByTitle
     } = useContext(ApiContext);
 
+    const { setSignOut } = useContext(AuthContext);
+
     const menuOfLeft = [                
         { to: '/electronics', name: 'electronics'},
         { to: '/jewelery', name: 'jewelery'},
@@ -25,10 +28,16 @@ function Navbar() {
     const menuOfRigth = [        
         { to: '/my-orders', name: 'My orders'},
         { to: '/my-account', name: 'My occount'},
-        { to: '/sign-in', name: 'Sign in' },        
+        // { to: '/sign-in', name: 'Sign in' },        
     ]
 
     const activeStyle = 'underline underline-offset-4';
+
+    const handleSignOut = () => {
+        const stringifyfiedSignOut = JSON.stringify(true);
+        localStorage.setItem('sign-out', stringifyfiedSignOut);
+        setSignOut(true);
+    }
 
     return (
         <React.Fragment>
@@ -74,6 +83,12 @@ function Navbar() {
                             </NavLink>
                         </li>
                     ))}
+                    <li>
+                        <NavLink to='/sign-out' className={({ isActive }) => isActive ? activeStyle : undefined}
+                            onClick={() => handleSignOut()}>
+                            Sign out
+                        </NavLink>
+                    </li>
                     <li>
                         <ShoppingBagIcon className="w-4 h-4 inline mr-1"/> {productsInShoppingCart.length}
                     </li>
