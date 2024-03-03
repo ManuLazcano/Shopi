@@ -3,7 +3,6 @@ import React from "react";
 import { Card } from "../../components/Card";
 import { Layout } from "../../components/Layout";
 import { ProductDetail } from "../../components/ProductDetail";
-import { ProductDetailProvider } from "../../Contexts/ProductDetailContext";
 import { ApiContext } from "../../Contexts/ApiContext";
 
 function Home() {
@@ -33,13 +32,11 @@ function Home() {
           placeholder="Search a product" 
           className="rounded-lg border border-black w-80 p-4 mb-4 focus:outline-none"
           onChange={(event) => setSearchByTitle(event.target.value)} 
-        />
-        <ProductDetailProvider>            
+        />        
           <section className="grid gap-4 grid-cols-4 w-full max-w-screen-lg">
             {renderView()}
           </section>
-          <ProductDetail />                        
-        </ProductDetailProvider>        
+          <ProductDetail />                                
       </Layout>
     </React.Fragment>
   )

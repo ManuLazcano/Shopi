@@ -1,16 +1,11 @@
 import React, { useContext } from "react";
-import { ShoppingBagIcon } from '@heroicons/react/24/solid'
 
 import { NavLink } from "react-router-dom";
-import { ShoppingCartContext } from "../../Contexts/ShoppingCartContext";
 import { ApiContext } from "../../Contexts/ApiContext";
 import { AuthContext } from "../../Contexts/AuthContext";
+import { ShoppingCart } from "../ShoppingCart";
 
-function Navbar() {
-    const {
-        productsInShoppingCart
-    } = useContext(ShoppingCartContext);
-    
+function Navbar() {    
     const {
         setSearchByCategory,
         setSearchByTitle
@@ -27,8 +22,7 @@ function Navbar() {
 
     const menuOfRigth = [        
         { to: '/my-orders', name: 'My orders'},
-        { to: '/my-account', name: 'My occount'},
-        // { to: '/sign-in', name: 'Sign in' },        
+        { to: '/my-account', name: 'My occount'},        
     ]
 
     const activeStyle = 'underline underline-offset-4';
@@ -69,7 +63,7 @@ function Navbar() {
                         </NavLink>
                     </li>
                     <li>
-                        <ShoppingBagIcon className="w-4 h-4 inline mr-1"/> {productsInShoppingCart.length}
+                        <ShoppingCart />                        
                     </li>
                 </>
             );
