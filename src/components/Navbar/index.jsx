@@ -16,7 +16,7 @@ function Navbar() {
         setSearchByTitle
     } = useContext(ApiContext);
 
-    const { signOut, setSignOut } = useContext(AuthContext);
+    const { signOut, setSignOut, account } = useContext(AuthContext);
 
     const menuOfLeft = [                
         { to: '/electronics', name: 'electronics'},
@@ -32,10 +32,17 @@ function Navbar() {
     ]
 
     const activeStyle = 'underline underline-offset-4';
-
+    //Sign out
     const signOutInLocalStorage = localStorage.getItem('sign-out');
     const parsedSignOut = JSON.parse(signOutInLocalStorage);
     const isUserSignOut = signOut || parsedSignOut;
+    // Account
+    const accountInLocalStorage = localStorage.getItem('account');
+    const parsedAccount = JSON.parse(accountInLocalStorage);
+    // Has an account
+    const noAccountInLocalStorage = parsedAccount ? Object.keys(parsedAccount).length === 0 : true;
+    const noAccountInLocalState = account ? Object.keys(account).length === 0 : true;
+    const hasUserAnAccount = !noAccountInLocalStorage || !noAccountInLocalState;
 
     const handleSignOut = () => {
         const stringifyfiedSignOut = JSON.stringify(true);
@@ -44,16 +51,7 @@ function Navbar() {
     }
 
     function renderView() {
-        if(isUserSignOut) {
-            return (
-                <li>
-                    <NavLink to='/sign-in' className={({ isActive }) => isActive ? activeStyle : undefined}
-                        onClick={() => handleSignOut()}>
-                        Sign out
-                    </NavLink>
-                </li>
-            );
-        } else {
+        if(hasUserAnAccount && !isUserSignOut) {
             return (
                 <>
                     <li className="text-black/60">example@gmail.com</li>
@@ -75,6 +73,15 @@ function Navbar() {
                     </li>
                 </>
             );
+        } else {
+            return (
+                <li>
+                    <NavLink to='/sign-in' className={({ isActive }) => isActive ? activeStyle : undefined}
+                        onClick={() => handleSignOut()}>
+                        Sign out
+                    </NavLink>
+                </li>
+            );            
         }
     }
 
@@ -82,7 +89,7 @@ function Navbar() {
         <React.Fragment>
             <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light">
                 <ul className="flex items-center gap-3">
-                    <NavLink to='/'>
+                    <NavLink to={`${isUserSignOut ? '/sign-in' : '/'}`}>
                         <li 
                             className="font-semibold text-lg"
                             onClick={() => {

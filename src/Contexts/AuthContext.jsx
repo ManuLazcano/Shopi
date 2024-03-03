@@ -31,11 +31,11 @@ function AuthProvider({children}) {
             account,
             setAccount,
             signOut,
-            setSignOut
+            setSignOut,            
         }}>
             {children}
         </AuthContext.Provider>
     );
 }
 
-export { AuthProvider, AuthContext };
+export { AuthProvider, AuthContext, initializeLocalStorage };

@@ -1,5 +1,5 @@
-import React from "react";
-import { BrowserRouter, useRoutes } from 'react-router-dom';
+import React, { useContext } from "react";
+import { BrowserRouter, Navigate, useRoutes } from 'react-router-dom';
 
 import { Navbar } from '../../components/Navbar';
 import { Home } from '../Home';
@@ -12,16 +12,30 @@ import { ShoppingCartProvider } from '../../Contexts/ShoppingCartContext';
 import { CheckoutSideMenu } from "../../components/CheckoutSideMenu";
 import { CheckoutSideMenuProvider } from "../../Contexts/CheckoutSideMenuContext";
 import { ApiContextProvider } from "../../Contexts/ApiContext";
-import { AuthProvider } from "../../Contexts/AuthContext";
+import { AuthContext, AuthProvider, initializeLocalStorage } from "../../Contexts/AuthContext";
 
 
 function AppRoutes() {
+    const { account, signOut } = useContext(AuthContext);
+
+    // Account
+    const accountInLocalStorage = localStorage.getItem('account');
+    const parsedAccount = JSON.parse(accountInLocalStorage);
+    // Sign out
+    const signOutInLocalStorage = localStorage.getItem('sign-out') ;
+    const parsedSignOut = JSON.parse(signOutInLocalStorage);
+    // Has an account
+    const noAccountInLocalStorage = parsedAccount ? Object.keys(parsedAccount).length === 0 : true;
+    const noAccountInLocalState = Object.keys(account).length === 0;
+    const hasUserAnAccount = !noAccountInLocalStorage || !noAccountInLocalState;
+    const isUserSignOut = signOut || parsedSignOut;
+
     const routes = useRoutes([
-        { path: '/', element: <Home />},        
-        { path: '/electronics', element: <Home />},
-        { path: '/jewelery', element: <Home />},
-        { path: '/mens-clothing', element: <Home />},
-        { path: '/womens-clothing', element: <Home />},        
+        { path: '/', element: hasUserAnAccount && !isUserSignOut ? <Home /> : <Navigate replace to={'/sign-in'} />},        
+        { path: '/electronics', element: hasUserAnAccount && !isUserSignOut ? <Home /> : <Navigate replace to={'/sign-in'} />},
+        { path: '/jewelery', element: hasUserAnAccount && !isUserSignOut ? <Home /> : <Navigate replace to={'/sign-in'} />},
+        { path: '/mens-clothing', element: hasUserAnAccount && !isUserSignOut ? <Home /> : <Navigate replace to={'/sign-in'} />},
+        { path: '/womens-clothing', element: hasUserAnAccount && !isUserSignOut ? <Home /> : <Navigate replace to={'/sign-in'} />},        
         { path: '/my-account', element: <MyAccount />},
         { path: '/my-order', element: <MyOrder />},
         { path: '/my-orders', element: <MyOrders />},
@@ -35,6 +49,8 @@ function AppRoutes() {
 }
 
 function AppUI() {
+    initializeLocalStorage();
+
     return (   
         <AuthProvider>
             <ApiContextProvider>
