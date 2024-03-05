@@ -48,7 +48,7 @@ function Navbar() {
         if(hasUserAnAccount && !isUserSignOut) {
             return (
                 <>
-                    <li className="text-black/60">example@gmail.com</li>
+                    <li className="text-black/60">{parsedAccount?.email}</li>
                         {menuOfRigth.map((itemNavbar, index) => (
                             <li key={index}>
                                 <NavLink to={itemNavbar.to} className={({ isActive }) => isActive ? activeStyle : undefined}>
