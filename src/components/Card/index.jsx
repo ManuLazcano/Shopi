@@ -49,7 +49,7 @@ function Card({product}) {
                     <img className="w-full h-full object-contain rounded-lg" src={product?.image} alt={product.title} />
                     {toggleCardIcon()}
                 </figure>
-                <p className="flex justify-between mx-2">
+                <p className="flex justify-between mx-2 items-center">
                     <span className="text-sm font-light truncate mr-2">{product.title}</span>
                     <span className="text-lg font-medium">${product.price}</span>
                 </p>
